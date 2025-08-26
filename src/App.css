@@ -1,0 +1,1318 @@
+/* Base CSS Variables - Default Theme */
+:root {
+  --primary-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-color: #00adbd;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --primary-gold: #ffd700;
+  --accent-green: #22c55e;
+  --accent-red: #ef4444;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Theme Classes */
+.theme-neon_glow {
+  --primary-bg: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
+  --card-bg: rgba(255, 0, 255, 0.1);
+  --text-primary: #ff00ff;
+  --accent-color: #00ffff;
+  --border-color: #ff00ff;
+  --primary-gold: #00ffff;
+  --glass-bg: rgba(255, 0, 255, 0.1);
+}
+
+.theme-royal_gold {
+  --primary-bg: linear-gradient(135deg, #1a1a0a 0%, #2a2a0a 100%);
+  --card-bg: rgba(255, 215, 0, 0.1);
+  --text-primary: #ffd700;
+  --accent-color: #ffd700;
+  --border-color: #ffd700;
+  --primary-gold: #ffd700;
+  --glass-bg: rgba(255, 215, 0, 0.1);
+}
+
+.theme-cyberpunk {
+  --primary-bg: linear-gradient(135deg, #000011 0%, #001122 100%);
+  --card-bg: rgba(0, 255, 255, 0.1);
+  --text-primary: #00ffff;
+  --accent-color: #ff0080;
+  --border-color: #00ffff;
+  --primary-gold: #ff0080;
+  --glass-bg: rgba(0, 255, 255, 0.1);
+}
+
+.theme-space_odyssey {
+  --primary-bg: linear-gradient(135deg, #000022 0%, #001144 100%);
+  --card-bg: rgba(100, 149, 237, 0.1);
+  --text-primary: #6495ed;
+  --accent-color: #9370db;
+  --border-color: #6495ed;
+  --primary-gold: #9370db;
+  --glass-bg: rgba(100, 149, 237, 0.1);
+}
+
+/* Effect Animations */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  40% {
+    transform: translate(-50%, -50%) translateY(-30px);
+  }
+  60% {
+    transform: translate(-50%, -50%) translateY(-15px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+/* Theme-specific glow effects */
+.theme-neon_glow * {
+  text-shadow: 0 0 10px currentColor;
+}
+
+.theme-neon_glow button {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.theme-cyberpunk .container {
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+/* Professional Gambling Website - Premium Dark Theme */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 50%, #0A0A0A 100%);
+  color: #FFFFFF;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+/* Premium Background Pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 69, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(138, 43, 226, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.App {
+  padding-top: 60px;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Professional Color Palette */
+:root {
+  --primary-gold: #FFD700;
+  --secondary-gold: #FFA500;
+  --accent-red: #FF4444;
+  --accent-green: #00FF88;
+  --dark-bg: #0F0F0F;
+  --card-bg: rgba(26, 26, 26, 0.95);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(255, 215, 0, 0.2);
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0B0B0;
+  --shadow-gold: 0 10px 40px rgba(255, 215, 0, 0.3);
+  --shadow-dark: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* Professional Navbar - Compact Design */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(15, 15, 15, 0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  height: 60px;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.balance-display {
+  background: linear-gradient(135deg, var(--glass-bg), rgba(255, 215, 0, 0.1));
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-weight: 700;
+  color: var(--primary-gold);
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+  backdrop-filter: blur(10px);
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.balance-display:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.15));
+  border-color: var(--primary-gold);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  transform: translateY(-1px);
+  color: var(--primary-gold);
+  text-decoration: none;
+}
+
+.balance-content {
+  display: flex;
+  align-items: center;
+}
+
+.deposit-icon {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.balance-display:hover .deposit-icon {
+  opacity: 1;
+}
+
+.nav-btn {
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+  font-size: 0.85rem;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4);
+}
+
+.nav-btn.secondary {
+  background: linear-gradient(135deg, var(--accent-red), #CC0000);
+  color: white;
+}
+
+.nav-btn.admin {
+  background: linear-gradient(135deg, #8A2BE2, #6A1B9A);
+  color: white;
+}
+
+.user-profile {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--primary-gold);
+  backdrop-filter: blur(10px);
+  font-size: 0.9rem;
+}
+
+/* Premium Container Styles */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-top: 80px; /* Add space for fixed navbar (60px) + extra padding */
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Game Layout Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+  
+  .navbar-content {
+    padding: 0;
+}
+
+  .nav-actions {
+    gap: 0.5rem;
+}
+
+  .balance-display {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+  .nav-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+  .user-profile {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+}
+
+.hero-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 69, 0, 0.05));
+  border-radius: 20px;
+  margin-bottom: 4rem;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(15px);
+  box-shadow: var(--shadow-dark);
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold), #FF4500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Premium Game Cards */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  backdrop-filter: blur(15px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-dark);
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+  transition: all 0.6s ease;
+}
+
+.game-card:hover::before {
+  left: 100%;
+}
+
+.game-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-gold);
+  box-shadow: 0 25px 80px rgba(255, 215, 0, 0.3);
+}
+
+.game-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 15px rgba(255, 215, 0, 0.5));
+}
+
+.game-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary-gold);
+  margin-bottom: 1rem;
+}
+
+.game-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.bet-range {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--accent-green);
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.play-btn {
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: var(--shadow-gold);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.play-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+}
+
+/* Premium Game Page Styles */
+.game-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: var(--shadow-dark);
+}
+
+.game-title {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.game-description {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.game-area {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(15px);
+  box-shadow: var(--shadow-dark);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Premium Form Styles */
+.form-label {
+  color: var(--primary-gold);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 1.1rem;
+}
+
+.bet-input, .form-input {
+  background: var(--glass-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  color: white;
+  font-size: 1.1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.bet-input:focus, .form-input:focus {
+  outline: none;
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.quick-bet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.stat-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--primary-gold);
+  transform: translateY(-5px);
+}
+
+.bet-btn {
+  background: var(--glass-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.8rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.bet-btn:hover, .bet-btn.active {
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+  color: #000;
+  border-color: var(--primary-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Premium Buttons */
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-gold);
+  width: 100%;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+}
+
+.secondary-btn {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.secondary-btn:hover {
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+  background: rgba(255, 215, 0, 0.1);
+}
+
+/* Result Cards */
+.result-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  box-shadow: var(--shadow-dark);
+  margin: 2rem 0;
+}
+
+.result-card.win {
+  border-color: var(--accent-green);
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+}
+
+.result-card.lose {
+  border-color: var(--accent-red);
+  background: linear-gradient(135deg, rgba(255, 68, 68, 0.1), rgba(255, 68, 68, 0.05));
+}
+
+.result-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.result-title.win {
+  color: var(--accent-green);
+}
+
+.result-title.lose {
+  color: var(--accent-red);
+}
+
+.result-amount {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--primary-gold);
+  margin: 1rem 0;
+}
+
+/* Auth Pages */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 50%, #0A0A0A 100%);
+}
+
+.auth-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 450px;
+  width: 100%;
+  backdrop-filter: blur(15px);
+  box-shadow: var(--shadow-dark);
+}
+
+.auth-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.auth-link a {
+  color: var(--primary-gold);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+/* Comprehensive Responsive Design */
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+    margin-top: 80px;
+    padding: 2rem 3rem;
+  }
+  
+  .games-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  
+  .hero-title {
+    font-size: 4rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.4rem;
+  }
+}
+
+/* Standard Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .container {
+    max-width: 1200px;
+    margin-top: 80px;
+    padding: 2rem;
+  }
+  
+  .games-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    margin-top: 80px;
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+  
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .game-card {
+    padding: 1.5rem;
+    min-height: auto;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .quick-bet-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+  
+  .auth-card {
+    padding: 2.5rem;
+    margin: 1rem;
+    max-width: 500px;
+  }
+  
+  .game-area {
+    padding: 2rem;
+    margin: 1.5rem 0;
+  }
+}
+
+/* Tablet Portrait & Large Mobile (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .container {
+    margin-top: 80px;
+    padding: 1rem;
+    max-width: 100%;
+  }
+  
+  .navbar {
+    padding: 1rem;
+  }
+  
+  .navbar-content {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .nav-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .logo {
+    justify-content: center;
+    font-size: 1.6rem;
+  }
+  
+  .balance-display {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .nav-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
+  
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+  
+  .game-card {
+    padding: 1.5rem;
+    margin: 0 0.5rem;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .quick-bet-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .auth-card {
+    padding: 2rem;
+    margin: 0.5rem;
+    max-width: 100%;
+  }
+  
+  .game-area {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .primary-btn, .secondary-btn {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: none;
+  }
+  
+  .bet-btn {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .result-card {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .App {
+    padding-top: 140px;
+  }
+}
+
+/* Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    margin-top: 80px;
+    padding: 0.8rem;
+    max-width: 100%;
+  }
+  
+  .navbar {
+    padding: 0.8rem;
+  }
+  
+  .navbar-content {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: stretch;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .nav-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+  
+  .balance-display {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  
+  .nav-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    width: 100%;
+  }
+  
+  .user-profile {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hero-section {
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+  
+  .game-card {
+    padding: 1.2rem;
+    margin: 0;
+    min-height: auto;
+  }
+  
+  .game-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .game-card p {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  
+  .bet-range {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .play-btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .stat-card {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .stat-card h3 {
+    font-size: 1.5rem;
+  }
+  
+  .stat-card p {
+    font-size: 0.8rem;
+  }
+  
+  .quick-bet-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+  }
+  
+  .bet-btn {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.8rem;
+    min-width: auto;
+  }
+  
+  .auth-container {
+    padding: 0.5rem;
+    min-height: auto;
+  }
+  
+  .auth-card {
+    padding: 1.5rem;
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .auth-form {
+    gap: 1rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .form-input {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .primary-btn, .secondary-btn {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: none;
+  }
+  
+  .game-area {
+    padding: 1rem;
+    margin: 0.8rem 0;
+  }
+  
+  .game-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .result-card {
+    padding: 1.2rem;
+    margin: 0.8rem 0;
+  }
+  
+  .App {
+    padding-top: 160px;
+  }
+}
+
+/* Extra Small Mobile (below 320px) */
+@media (max-width: 319px) {
+  html {
+    font-size: 12px;
+  }
+  
+  .container {
+    margin-top: 80px;
+    padding: 0.5rem;
+  }
+  
+  .navbar {
+    padding: 0.5rem;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .auth-card {
+    padding: 1rem;
+  }
+  
+  .game-area {
+    padding: 0.8rem;
+  }
+  
+  .quick-bet-grid {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  
+  .App {
+    padding-top: 180px;
+  }
+}
+
+/* Landscape Mobile Orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .App {
+    padding-top: 80px;
+  }
+  
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-actions {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  
+  .hero-section {
+    padding: 1rem 0;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .game-card {
+    padding: 1rem;
+  }
+}
+
+/* Premium Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes goldGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Live Wins Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes newWin {
+  0% {
+    transform: scale(1.1);
+    background: rgba(0, 255, 136, 0.3);
+    border-color: rgba(0, 255, 136, 0.6);
+  }
+  50% {
+    transform: scale(1.05);
+    background: rgba(0, 255, 136, 0.2);
+  }
+  100% {
+    transform: scale(1);
+    background: rgba(0, 255, 136, 0.1);
+    border-color: rgba(0, 255, 136, 0.3);
+  }
+}
+
+@keyframes coinFlip {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(180deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-goldGlow {
+  animation: goldGlow 2s ease-in-out infinite;
+}
+
+/* Daily Bonus Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Achievement Notification Animations */
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+}
+
+/* VIP Animations */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Game-specific styles will be added individually */ 

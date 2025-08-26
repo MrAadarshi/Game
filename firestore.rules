@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Users can read/write their own transactions
+    match /transactions/{transactionId} {
+      allow read, write: if request.auth != null && 
+        (request.auth.uid == resource.data.userId || 
+         request.auth.uid == resource.data.userId);
+    }
+    
+    // Users can read/write their own payment requests
+    match /payment_requests/{requestId} {
+      allow read, write: if request.auth != null && 
+        (request.auth.uid == resource.data.userId || 
+         request.auth.uid == resource.data.userId);
+    }
+    
+    // Allow admins to access all data (you'll need to implement admin check in your app)
+    // This is a basic rule - you may want to implement more sophisticated admin checking
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+} 
