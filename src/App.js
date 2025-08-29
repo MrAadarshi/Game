@@ -21,6 +21,7 @@ import Tournaments from './pages/Tournaments';
 import VIP from './pages/VIP';
 import Withdrawal from './pages/Withdrawal';
 import SportsBetting from './pages/SportsBetting';
+import Surveys from './pages/Surveys';
 
 // Game components
 import MathChallenge from './games/MathChallenge';
@@ -133,15 +134,49 @@ function AppContent() {
             <Payment />
           </ProtectedRoute>
         } />
+        <Route path="/withdrawal" element={
+          <ProtectedRoute>
+            <Withdrawal />
+          </ProtectedRoute>
+        } />
         <Route path="/coin-games" element={<ProtectedRoute><CoinGames /></ProtectedRoute>} />
-                  <Route path="/virtual-currency" element={<VirtualCurrencyPanel />} />
-          <Route path="/premium" element={<PremiumSubscription />} />
-          <Route path="/store" element={<VirtualStore />} />
-          <Route path="/inventory" element={<InventoryManager />} />
-                        <Route path="/tournaments" element={<TournamentSystem />} />
-              <Route path="/revenue-dashboard" element={<RevenueDashboard />} />
+        <Route path="/virtual-currency" element={
+          <ProtectedRoute>
+            <VirtualCurrencyPanel />
+          </ProtectedRoute>
+        } />
+        <Route path="/premium" element={
+          <ProtectedRoute>
+            <PremiumSubscription />
+          </ProtectedRoute>
+        } />
+        <Route path="/store" element={
+          <ProtectedRoute>
+            <VirtualStore />
+          </ProtectedRoute>
+        } />
+        <Route path="/inventory" element={
+          <ProtectedRoute>
+            <InventoryManager />
+          </ProtectedRoute>
+        } />
+        <Route path="/sports-betting" element={
+          <ProtectedRoute>
+            <SportsBetting />
+          </ProtectedRoute>
+        } />
+        <Route path="/surveys" element={
+          <ProtectedRoute>
+            <Surveys />
+          </ProtectedRoute>
+        } />
+        <Route path="/revenue-dashboard" element={
+          <ProtectedRoute>
+            <RevenueDashboard />
+          </ProtectedRoute>
+        } />
               
-              {/* Teen Engagement Features */}
+        {/* Teen Engagement Features */}
         <Route path="/shorts" element={
           <ProtectedRoute>
             <div style={{ padding: '2rem', textAlign: 'center' }}>

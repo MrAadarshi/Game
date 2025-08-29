@@ -19,6 +19,7 @@ const Home = () => {
     activePlayers: 3247
   });
   const [showComplianceNotice, setShowComplianceNotice] = useState(false);
+  const [activityIndex, setActivityIndex] = useState(0);
 
   // Show compliance notice to users on first visit
   useEffect(() => {
@@ -54,6 +55,16 @@ const Home = () => {
   const vipStats = getVIPStats();
   const unreadNotifications = getUnreadCount();
 
+  // Dynamic Activity Feed Data
+  const activityMessages = [
+    { type: 'survey', player: 'Sarah_M', amount: 200, survey: 'Tech Survey', time: '1 min ago', color: '#667eea' },
+    { type: 'bonus', player: 'Mike_T', amount: 350, survey: 'Travel Survey', bonus: 'completion bonus', time: '3 min ago', color: '#f093fb' },
+    { type: 'online', count: 89, message: 'users taking surveys', info: 'All categories active', time: 'now', color: '#4ECDC4' },
+    { type: 'survey', player: 'Alex_R', amount: 150, survey: 'Lifestyle Survey', time: '5 min ago', color: '#00FF88' },
+    { type: 'streak', player: 'Emma_K', achievement: 'completed 5 surveys today', survey: 'Shopping Survey', time: '7 min ago', color: '#8B5CF6' },
+    { type: 'reward', player: 'David_L', amount: 500, survey: 'Entertainment Survey', bonus: 'high-value survey', time: '10 min ago', color: '#FFD700' }
+  ];
+
   // Update live stats every 10 seconds
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,6 +79,15 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Rotate activity feed every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActivityIndex(prev => (prev + 1) % Math.floor(activityMessages.length / 3));
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [activityMessages.length]);
+
   const formatNumber = (num) => {
     if (num >= 1000000) {
       return `${(num / 1000000).toFixed(1)}M`;
@@ -77,67 +97,67 @@ const Home = () => {
     return num?.toLocaleString() || '0';
   };
 
-  // Coin Arena Games
-  const coinArenaGames = [
+  // Survey Categories Preview
+  const surveyCategories = [
     {
-      id: 'memory-match',
-      name: 'Memory Match',
-      icon: '🧠',
-      description: 'Test your memory skills',
-      reward: '10-50 coins',
+      id: 'lifestyle',
+      name: 'Lifestyle',
+      icon: '🏠',
+      description: 'Your daily habits & preferences',
+      reward: '50-200 coins',
       difficulty: 'Easy',
-      category: 'Brain',
-      estimated_time: '2 min'
-    },
-    {
-      id: 'math-challenge',
-      name: 'Math Challenge',
-      icon: '🧮',
-      description: 'Solve math problems quickly',
-      reward: '15-75 coins',
-      difficulty: 'Medium',
-      category: 'Brain',
+      category: 'Personal',
       estimated_time: '3 min'
     },
     {
-      id: 'word-puzzle',
-      name: 'Word Puzzle',
-      icon: '📝',
-      description: 'Find hidden words',
-      reward: '20-100 coins',
+      id: 'tech',
+      name: 'Technology',
+      icon: '📱',
+      description: 'Latest tech trends & gadgets',
+      reward: '75-300 coins',
       difficulty: 'Medium',
-      category: 'Language',
-      estimated_time: '4 min'
-    },
-    {
-      id: 'pattern-recognition',
-      name: 'Pattern Master',
-      icon: '🔍',
-      description: 'Identify patterns quickly',
-      reward: '25-125 coins',
-      difficulty: 'Hard',
-      category: 'Logic',
+      category: 'Innovation',
       estimated_time: '5 min'
     },
     {
-      id: 'reaction-time',
-      name: 'Lightning Reflexes',
-      icon: '⚡',
-      description: 'Test your reaction speed',
-      reward: '30-150 coins',
-      difficulty: 'Hard',
-      category: 'Skill',
+      id: 'shopping',
+      name: 'Shopping',
+      icon: '🛍️',
+      description: 'Your shopping behavior',
+      reward: '60-250 coins',
+      difficulty: 'Easy',
+      category: 'Consumer',
+      estimated_time: '4 min'
+    },
+    {
+      id: 'entertainment',
+      name: 'Entertainment',
+      icon: '🎬',
+      description: 'Movies, music & shows',
+      reward: '80-350 coins',
+      difficulty: 'Medium',
+      category: 'Media',
+      estimated_time: '6 min'
+    },
+    {
+      id: 'food',
+      name: 'Food & Dining',
+      icon: '🍕',
+      description: 'Food preferences & dining',
+      reward: '45-180 coins',
+      difficulty: 'Easy',
+      category: 'Culinary',
       estimated_time: '3 min'
     },
     {
-      id: 'trivia-quest',
-      name: 'Trivia Quest',
-      icon: '❓',
-      description: 'Answer knowledge questions',
-      reward: '40-200 coins',
-      difficulty: 'Varied',
-      category: 'Knowledge',
-      estimated_time: '6 min'
+      id: 'travel',
+      name: 'Travel',
+      icon: '✈️',
+      description: 'Travel experiences & plans',
+      reward: '100-400 coins',
+      difficulty: 'High',
+      category: 'Adventure',
+      estimated_time: '8 min'
     }
   ];
 
@@ -146,9 +166,16 @@ const Home = () => {
       case 'Easy': return '#00FF88';
       case 'Medium': return '#FFB400';
       case 'Hard': return '#FF4C4C';
-      case 'Varied': return '#8B5CF6';
+      case 'High': return '#8B5CF6';
+      case 'Varied': return '#4ECDC4';
       default: return '#00FF88';
     }
+  };
+
+  // Handle survey click
+  const handleSurveyClick = (survey) => {
+    // Navigate to internal surveys page
+    navigate('/surveys');
   };
 
   return (
@@ -700,190 +727,432 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Coin Arena Games Preview Grid */}
-      <div style={{ marginBottom: '3rem' }}>
-        <h2 style={{
-          color: 'var(--primary-gold)',
-          fontSize: '2rem',
-          marginBottom: '1.5rem',
-          textAlign: 'center',
-          fontWeight: '800'
-        }}>
-          🎮 Available Games
-        </h2>
-        
+      {/* Survey Hub - Earn While You Share */}
+      <div style={{ marginBottom: '4rem' }}>
+        {/* Epic Header with Animated Title */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-          gap: '1.5rem',
-          marginBottom: '2rem'
+          textAlign: 'center',
+          marginBottom: '3rem',
+          position: 'relative'
         }}>
-          {coinArenaGames.map((game, index) => (
-            <div
-            key={game.id}
+          <div style={{
+            background: 'linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe)',
+            backgroundSize: '400% 400%',
+            animation: 'gradientShift 3s ease infinite',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            fontSize: '3.5rem',
+            fontWeight: '900',
+            marginBottom: '0.5rem',
+            textShadow: '0 4px 20px rgba(255, 255, 255, 0.3)'
+          }}>
+            📊 SURVEY HUB 💰
+          </div>
+          <div style={{
+            color: 'var(--text-secondary)',
+            fontSize: '1.2rem',
+            fontWeight: '500'
+          }}>
+            Share Your Opinion • Earn Instant Rewards • Make Your Voice Count
+          </div>
+        </div>
+
+        {/* Featured Survey Spotlight */}
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))',
+          borderRadius: '24px',
+          padding: '2rem',
+          marginBottom: '3rem',
+          border: '2px solid rgba(102, 126, 234, 0.3)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          {/* Spotlight Beam Effect */}
+          <div style={{
+            position: 'absolute',
+            top: '-50%',
+            left: '-50%',
+            width: '200%',
+            height: '200%',
+            background: 'conic-gradient(from 0deg, transparent, rgba(102, 126, 234, 0.1), transparent)',
+            animation: 'spotlight 4s linear infinite',
+            pointerEvents: 'none'
+          }} />
+          
+          <div style={{
+            textAlign: 'center',
+            position: 'relative',
+            zIndex: 2
+          }}>
+            <div style={{
+              display: 'inline-block',
+              background: 'linear-gradient(45deg, #667eea, #764ba2)',
+              color: '#fff',
+              padding: '0.5rem 1.5rem',
+              borderRadius: '20px',
+              fontSize: '1rem',
+              fontWeight: '800',
+              marginBottom: '1rem',
+              boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)'
+            }}>
+              🌟 FEATURED HIGH-REWARD SURVEY 🌟
+            </div>
+            
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '2rem',
+              marginBottom: '1.5rem'
+            }}>
+              <div style={{
+                fontSize: '4rem',
+                filter: 'drop-shadow(0 0 20px rgba(102, 126, 234, 0.5))'
+              }}>
+                💎
+              </div>
+              <div style={{ textAlign: 'left' }}>
+                <h3 style={{
+                  color: 'var(--primary-gold)',
+                  fontSize: '2rem',
+                  fontWeight: '800',
+                  margin: 0,
+                  textShadow: '0 2px 10px rgba(102, 126, 234, 0.3)'
+                }}>
+                  Tech Trends Survey
+                </h3>
+                <div style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '1.1rem',
+                  marginTop: '0.5rem'
+                }}>
+                  Share your tech preferences • Earn 500 coins instantly!
+                </div>
+              </div>
+            </div>
+            
+            <button
               style={{
-                background: 'var(--glass-bg)',
-                border: '1px solid var(--border-color)',
-                borderRadius: '16px',
-                padding: '1.5rem',
-                transition: 'all 0.3s ease',
+                background: 'linear-gradient(45deg, #667eea, #764ba2)',
+                color: '#fff',
+                padding: '1rem 3rem',
+                borderRadius: '25px',
+                border: 'none',
+                fontSize: '1.2rem',
+                fontWeight: '800',
                 cursor: 'pointer',
-                position: 'relative',
-                overflow: 'hidden'
+                transition: 'all 0.3s ease',
+                boxShadow: '0 8px 25px rgba(102, 126, 234, 0.3)',
+                textTransform: 'uppercase',
+                letterSpacing: '1px'
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-8px)';
-                e.target.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.2)';
-                e.target.style.borderColor = 'var(--accent-color)';
+                e.target.style.transform = 'scale(1.1) rotateX(5deg)';
+                e.target.style.boxShadow = '0 15px 35px rgba(102, 126, 234, 0.5)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = 'none';
-                e.target.style.borderColor = 'var(--border-color)';
+                e.target.style.transform = 'scale(1) rotateX(0deg)';
+                e.target.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
               }}
-              onClick={() => handleGameClick(game.id)}
+              onClick={() => navigate('/surveys')}
             >
-              {/* Game Header */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                marginBottom: '1rem'
-              }}>
-                <div style={{
-                  fontSize: '3rem',
-                    filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))'
-                  }}>
-                    {game.icon}
-                  </div>
-                  <div>
-                    <h3 style={{
-                      color: 'var(--text-primary)',
-                    fontSize: '1.3rem',
-                      fontWeight: '700',
-                      margin: 0,
-                      lineHeight: '1.2'
-                    }}>
-                      {game.name}
-                    </h3>
-                    <div style={{
-                      color: 'var(--text-secondary)',
-                    fontSize: '0.9rem',
-                    marginTop: '0.3rem'
-                    }}>
-                      {game.description}
-                  </div>
-                </div>
-              </div>
+              💰 Take Featured Survey
+            </button>
+          </div>
+        </div>
 
-              {/* Game Details */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '1rem',
-                marginBottom: '1rem',
-                fontSize: '0.9rem'
-              }}>
-                <div>
-                  <div style={{ color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
-                    Reward Range
-                  </div>
-                  <div style={{ color: 'var(--accent-green)', fontWeight: '700' }}>
-                    🪙 {game.reward}
-                  </div>
-                </div>
-                <div>
-                  <div style={{ color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
-                    Est. Time
-                  </div>
-                  <div style={{ color: 'var(--primary-gold)', fontWeight: '600' }}>
-                    ⏱️ {game.estimated_time}
-                  </div>
-                </div>
-              </div>
+                {/* Interactive Survey Selector Wheel */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '3rem'
+        }}>
+          <div style={{
+            position: 'relative',
+            width: '350px',
+            height: '350px'
+          }}>
+            {/* Central Hub */}
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '120px',
+              height: '120px',
+              background: 'linear-gradient(45deg, #667eea, #764ba2)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '2.5rem',
+              zIndex: 10,
+              boxShadow: '0 0 30px rgba(102, 126, 234, 0.6)',
+              border: '4px solid rgba(255, 255, 255, 0.3)'
+            }}>
+              📊
+            </div>
+            
+            {/* Orbiting Survey Cards */}
+            {surveyCategories.map((survey, index) => {
+              const angle = (index * 360) / surveyCategories.length;
+               
+               return (
+                 <div
+                   key={`orbit-${survey.id}`}
+                   style={{
+                     position: 'absolute',
+                     top: '50%',
+                     left: '50%',
+                     width: '140px',
+                     height: '140px',
+                     transform: 'translate(-50%, -50%)',
+                     animation: `orbit 20s linear infinite`,
+                     animationDelay: `${index * -3.33}s`,
+                     transformOrigin: 'center'
+                   }}
+                 >
+                   <div
+                     style={{
+                       position: 'absolute',
+                       top: '0',
+                       left: '50%',
+                       transform: 'translateX(-50%)',
+                       width: '100px',
+                       height: '100px',
+                       background: `linear-gradient(135deg, ${getDifficultyColor(survey.difficulty)}20, ${getDifficultyColor(survey.difficulty)}40)`,
+                       borderRadius: '20px',
+                       display: 'flex',
+                       flexDirection: 'column',
+                       alignItems: 'center',
+                       justifyContent: 'center',
+                       cursor: 'pointer',
+                       transition: 'all 0.4s ease',
+                       border: `2px solid ${getDifficultyColor(survey.difficulty)}`,
+                       boxShadow: `0 4px 15px ${getDifficultyColor(survey.difficulty)}30`
+                     }}
+                     onMouseEnter={(e) => {
+                       e.target.style.transform = 'translateX(-50%) scale(1.2)';
+                       e.target.style.zIndex = '5';
+                       e.target.style.boxShadow = `0 8px 25px ${getDifficultyColor(survey.difficulty)}60`;
+                     }}
+                     onMouseLeave={(e) => {
+                       e.target.style.transform = 'translateX(-50%) scale(1)';
+                       e.target.style.zIndex = '1';
+                       e.target.style.boxShadow = `0 4px 15px ${getDifficultyColor(survey.difficulty)}30`;
+                     }}
+                     onClick={() => handleSurveyClick(survey)}
+                   >
+                     <div style={{ fontSize: '2rem', marginBottom: '0.25rem' }}>
+                       {survey.icon}
+                     </div>
+                     <div style={{
+                       fontSize: '0.7rem',
+                       fontWeight: '700',
+                       color: 'var(--text-primary)',
+                       textAlign: 'center',
+                       lineHeight: '1'
+                     }}>
+                       {survey.name.split(' ')[0]}
+                     </div>
+                   </div>
+                 </div>
+               );
+             })}
+           </div>
+         </div>
 
-              {/* Bottom Section */}
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
-              }}>
-                <div style={{
-                  background: getDifficultyColor(game.difficulty),
-                  color: '#000',
-                  padding: '0.4rem 0.8rem',
-                  borderRadius: '12px',
-                  fontSize: '0.8rem',
-                  fontWeight: '700'
-                }}>
-                  {game.difficulty}
-                </div>
-                
-                <div style={{
-                  background: 'rgba(139, 92, 246, 0.2)',
-                  color: '#8B5CF6',
-                  padding: '0.4rem 0.8rem',
-                  borderRadius: '12px',
-                  fontSize: '0.8rem',
-                  fontWeight: '600'
-                }}>
-                  {game.category}
-                </div>
-              </div>
+        {/* Live Activity Stream */}
+        <div style={{
+          background: 'var(--glass-bg)',
+          borderRadius: '20px',
+          padding: '1.5rem',
+          border: '1px solid var(--border-color)',
+          marginBottom: '2rem'
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            marginBottom: '1rem'
+          }}>
+            <div style={{
+              width: '12px',
+              height: '12px',
+              background: '#00FF88',
+              borderRadius: '50%',
+              animation: 'pulse 2s infinite'
+            }} />
+                         <h3 style={{
+               color: 'var(--text-primary)',
+               fontSize: '1.3rem',
+               fontWeight: '700',
+               margin: 0
+             }}>
+               📊 Live Survey Activity
+             </h3>
+          </div>
+          
+                     <div style={{
+             display: 'grid',
+             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+             gap: '1rem',
+             fontSize: '0.9rem'
+           }}>
+             {activityMessages.slice(activityIndex * 3, (activityIndex * 3) + 3).map((activity, index) => (
+               <div key={`activity-${activityIndex}-${index}`} style={{
+                 background: `${activity.color}15`,
+                 padding: '0.75rem',
+                 borderRadius: '10px',
+                 border: `1px solid ${activity.color}50`,
+                 transition: 'all 0.5s ease',
+                 animation: 'fadeInUp 0.5s ease'
+               }}>
+                 <div style={{ color: activity.color, fontWeight: '700' }}>
+                   {activity.type === 'survey' && `📋 ${activity.player} earned ${activity.amount} coins!`}
+                   {activity.type === 'bonus' && `🎯 ${activity.player} got ${activity.bonus}: +${activity.amount}!`}
+                   {activity.type === 'online' && `⭐ ${activity.count} ${activity.message}`}
+                   {activity.type === 'streak' && `🔥 ${activity.player} ${activity.achievement}!`}
+                   {activity.type === 'reward' && `💎 ${activity.player} earned ${activity.amount} coins from ${activity.bonus}!`}
+                 </div>
+                 <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
+                   {activity.survey || activity.info} • {activity.time}
+                 </div>
+               </div>
+             ))}
+           </div>
+        </div>
 
-              {/* Play Button Overlay */}
-                  <div style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                opacity: 0,
-                transition: 'opacity 0.3s ease'
+        {/* Survey Rewards Showcase */}
+        <div style={{
+          background: 'var(--glass-bg)',
+          borderRadius: '20px',
+          padding: '2rem',
+          border: '1px solid var(--border-color)',
+          marginBottom: '2rem'
+        }}>
+          <div style={{
+            textAlign: 'center',
+            marginBottom: '1.5rem'
+          }}>
+            <h3 style={{
+              color: 'var(--primary-gold)',
+              fontSize: '1.5rem',
+              fontWeight: '800',
+              margin: 0,
+              marginBottom: '0.5rem'
+            }}>
+              🎁 Daily Earning Potential
+            </h3>
+            <p style={{
+              color: 'var(--text-secondary)',
+              fontSize: '1rem',
+              margin: 0
+            }}>
+              Complete surveys and earn coins instantly!
+            </p>
+          </div>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '1rem'
+          }}>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.2))',
+              padding: '1rem',
+              borderRadius: '15px',
+              border: '2px solid rgba(0, 255, 136, 0.3)',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🌟</div>
+              <div style={{ color: '#00FF88', fontWeight: '700', fontSize: '1.1rem' }}>Quick Surveys</div>
+              <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>50-200 coins • 3-5 mins</div>
+            </div>
+            
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(255, 180, 0, 0.1), rgba(255, 180, 0, 0.2))',
+              padding: '1rem',
+              borderRadius: '15px',
+              border: '2px solid rgba(255, 180, 0, 0.3)',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>💎</div>
+              <div style={{ color: '#FFB400', fontWeight: '700', fontSize: '1.1rem' }}>Premium Surveys</div>
+              <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>200-500 coins • 10-15 mins</div>
+            </div>
+            
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.2))',
+              padding: '1rem',
+              borderRadius: '15px',
+              border: '2px solid rgba(139, 92, 246, 0.3)',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🚀</div>
+              <div style={{ color: '#8B5CF6', fontWeight: '700', fontSize: '1.1rem' }}>Daily Streak</div>
+              <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>+50% bonus • Keep going!</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Survey Dashboard Button */}
+        <div style={{ textAlign: 'center' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '1rem',
+            flexWrap: 'wrap'
+          }}>
+            <button 
+              style={{
+                background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                color: '#fff',
+                padding: '1rem 2rem',
+                borderRadius: '12px',
+                border: 'none',
+                fontSize: '1.1rem',
+                fontWeight: '700',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.target.style.opacity = 1;
-                  }}>
-                    <div style={{
-                  background: 'rgba(255, 215, 0, 0.9)',
-                  color: '#000',
-                  padding: '0.8rem 1.5rem',
-                  borderRadius: '20px',
-                  fontSize: '1rem',
-                  fontWeight: '800',
-                  boxShadow: '0 4px 15px rgba(255, 215, 0, 0.4)'
-                }}>
-                  ▶️ Play Now
-                  </div>
-                </div>
-              </div>
-          ))}
-            </div>
-
-        {/* View All Games Button */}
-        <div style={{ textAlign: 'center' }}>
-          <Link to="/coin-games" style={{ textDecoration: 'none' }}>
-            <button style={{
-              background: 'linear-gradient(135deg, var(--accent-color), #0094A6)',
-              color: '#fff',
-              padding: '1rem 2rem',
-              borderRadius: '12px',
-              border: 'none',
-              fontSize: '1.1rem',
-              fontWeight: '700',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'scale(1.05)';
-              e.target.style.boxShadow = '0 8px 20px rgba(0, 173, 181, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'scale(1)';
-              e.target.style.boxShadow = 'none';
-            }}>
-              🎮 View All Games & Start Playing
+                e.target.style.transform = 'scale(1.05)';
+                e.target.style.boxShadow = '0 8px 20px rgba(102, 126, 234, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1)';
+                e.target.style.boxShadow = 'none';
+              }}
+              onClick={() => navigate('/surveys')}
+            >
+              📊 Browse All Surveys
             </button>
-          </Link>
+            
+            <Link to="/coin-games" style={{ textDecoration: 'none' }}>
+              <button style={{
+                background: 'linear-gradient(135deg, var(--accent-color), #0094A6)',
+                color: '#fff',
+                padding: '1rem 2rem',
+                borderRadius: '12px',
+                border: 'none',
+                fontSize: '1.1rem',
+                fontWeight: '700',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.05)';
+                e.target.style.boxShadow = '0 8px 20px rgba(0, 173, 181, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1)';
+                e.target.style.boxShadow = 'none';
+              }}>
+                🎮 Play Games Too
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
 
